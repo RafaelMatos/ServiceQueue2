@@ -1,0 +1,4 @@
+{
+  "extends":"@sq/tsconfig/node.json",
+  "include": ["src/**/*"]
+}

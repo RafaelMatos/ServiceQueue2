@@ -1,0 +1,21 @@
+{
+  "name": "@sq/api",
+  "version": "1.0.0",
+  "scripts": {
+    "dev":"tsx watch src/index.ts"
+  },
+  "dependencies": {
+    "@sq/auth": "workspace:*"
+  },
+  "devDependencies": {
+    "@sq/eslint-config": "workspace:*",
+    "@sq/prettier": "workspace:*",
+    "@sq/tsconfig": "workspace:*",
+    "@types/node": "^20.14.9",
+    "tsx": "^4.16.2"
+  },
+  "prettier": "@sq/prettier",
+  "eslintConfig": {
+    "extends": "@sq/eslint-config/node"
+  }
+}
