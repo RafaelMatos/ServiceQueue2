@@ -19,15 +19,19 @@ enum Role {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  name      String
-  email     String   @unique
-  role Role @default(MEMBER)
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  age          Int?
+  gender       Gender?
+  passwordHash String?  @map("password_hash")
+  avatarUrl    String?  @map("avartar_url")
+  role         Role     @default(MEMBER)
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
 
   patients_on Patient[]
-  servers_on      Server[]
+  servers_on  Server[]
   tokens      Token[]
 
   @@map("users")
@@ -40,11 +44,9 @@ enum Gender {
 }
 
 model Patient {
-  id     String @id @default(uuid())
-  age    Int
-  gender Gender
+  id String @id @default(uuid())
 
-  user        User          @relation(fields: [userId], references: [id])
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String        @map("user_id")
   Appointment Appointment[]
 
@@ -52,9 +54,7 @@ model Patient {
 }
 
 model Server {
-  id     String @id @default(uuid())
-  age    Int
-  gender Gender
+  id String @id @default(uuid())
 
   user   User   @relation(fields: [userId], references: [id])
   userId String @map("user_id")
