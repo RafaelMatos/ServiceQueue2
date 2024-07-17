@@ -13,6 +13,7 @@ import {
 
 import { authenticateWithCredentials } from './routes/auth/authenticate-with-credentials'
 import { createAccount } from './routes/auth/create-account'
+import { getProfile } from './routes/auth/get-profile'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -43,6 +44,7 @@ app.register(fastifyJwt, {
 
 app.register(createAccount)
 app.register(authenticateWithCredentials)
+app.register(getProfile)
 
 app.listen({ port: 3333 }).then(() => {
   console.log('HTTP Server running!')
